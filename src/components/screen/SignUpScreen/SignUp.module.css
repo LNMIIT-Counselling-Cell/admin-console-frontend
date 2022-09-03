@@ -1,0 +1,69 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  width: 60%;
+  height: 100vh;
+  background-image: url('../../../assets/images/adminconsole.png');
+  background-position: 35% 0%;
+  background-size: cover;
+}
+
+.leftImg {
+  width: 80%;
+  height: auto;
+}
+
+.right {
+  width: 40%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}
+
+.input {
+  width: 80%;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  border: 0.5px solid grey;
+  font-size: 1rem;
+}
+
+.submitbtn {
+  width: 85%;
+  margin-top: 1.5rem;
+  margin-bottom: 0.25rem;
+  padding: 0.75rem;
+  border: 0.5px solid grey;
+  border-radius: 8px;
+  background-color: #1976d2;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.subContainer {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 85%;
+  text-decoration: underline;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+}
+
+.subContainerText {
+  color: #1976d2;
+}
