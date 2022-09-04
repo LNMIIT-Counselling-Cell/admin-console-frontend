@@ -32,7 +32,7 @@ export const Dashboard = () => {
         <Button variant="contained" endIcon={<ArrowForwardOutlined />} onClick={() => navigate('/approvedoutpasses')}>
           Approved Outpasses
         </Button>
-        <Button variant="contained" endIcon={<ArrowForwardOutlined />}>
+        <Button variant="contained" endIcon={<ArrowForwardOutlined />} onClick={() => navigate('/uploadpost')}>
           Upload Post
         </Button>
         <Button variant="contained" endIcon={<LogoutOutlined />} onClick={() => logout()}>

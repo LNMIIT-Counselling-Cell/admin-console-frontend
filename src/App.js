@@ -1,13 +1,11 @@
 import React, { useEffect, createContext, useReducer, useContext } from 'react';
-// import Navbar from './components/Navbar';
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import ApprovedOutpass from './components/screen/ApprovedOutpassScreen/ApprovedOutpass';
 import { Dashboard } from './components/screen/DashboardScreen/Dashboard';
 import PendingOutpass from './components/screen/PendingOutpassScreen/PendingOutpass';
-// import Home from './components/screen/Home';
-// import Profile from './components/screen/Profile';
 import SignIn from './components/screen/SignInScreen.js/SignIn';
 import SignUp from './components/screen/SignUpScreen/SignUp';
+import { UploadPost } from './components/screen/UploadPostScreen/UploadPost';
 import { reducer, initialState } from './reducers/userReducer';
 
 export const AdminContext = createContext()
@@ -30,15 +28,12 @@ const Routing = () => {
   }, [])
 
   return (
-    // this will make sure that atleast one route is active
     <Routes>
-      {/* <Route exact path='/'>
-        <Home />
-      </Route> */}
       <Route path='/' >
         <Route index={true} element={<Dashboard />} />
         <Route path='pendingoutpasses' element={<PendingOutpass />} />
         <Route path='approvedoutpasses' element={<ApprovedOutpass />} />
+        <Route path='uploadpost' element={<UploadPost />} />
       </Route>
       <Route path='adminsignin' element={<SignIn />} />
       <Route path='adminsignup' element={<SignUp />} />
@@ -53,7 +48,6 @@ function App() {
   return (
     <AdminContext.Provider value={{ state: state, dispatch: dispatch }}>
       <BrowserRouter>
-        {/* <Navbar /> */}
         <Routing />
       </BrowserRouter>
     </AdminContext.Provider>
