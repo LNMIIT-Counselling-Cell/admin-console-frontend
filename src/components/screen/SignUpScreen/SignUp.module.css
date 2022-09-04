@@ -41,9 +41,18 @@
   font-size: 1rem;
 }
 
+.validBox {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 85%;
+  color: red;
+  font-size: 1rem;
+}
+
 .submitbtn {
   width: 85%;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   margin-bottom: 0.25rem;
   padding: 0.75rem;
   border: 0.5px solid grey;
@@ -66,4 +75,15 @@
 
 .subContainerText {
   color: #1976d2;
+}
+
+.submitbtnbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.submitbtnText {
+  margin-right: 1rem;
 }
