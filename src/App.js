@@ -1,7 +1,9 @@
 import React, { useEffect, createContext, useReducer, useContext } from 'react';
 // import Navbar from './components/Navbar';
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
-import Home from './components/screen/HomeScreen/Home';
+import ApprovedOutpass from './components/screen/ApprovedOutpassScreen/ApprovedOutpass';
+import { Dashboard } from './components/screen/DashboardScreen/Dashboard';
+import PendingOutpass from './components/screen/PendingOutpassScreen/PendingOutpass';
 // import Home from './components/screen/Home';
 // import Profile from './components/screen/Profile';
 import SignIn from './components/screen/SignInScreen.js/SignIn';
@@ -33,7 +35,11 @@ const Routing = () => {
       {/* <Route exact path='/'>
         <Home />
       </Route> */}
-      <Route path='/' element={<Home />} />
+      <Route path='/' >
+        <Route index={true} element={<Dashboard />} />
+        <Route path='pendingoutpasses' element={<PendingOutpass />} />
+        <Route path='approvedoutpasses' element={<ApprovedOutpass />} />
+      </Route>
       <Route path='adminsignin' element={<SignIn />} />
       <Route path='adminsignup' element={<SignUp />} />
     </Routes>

@@ -38,7 +38,6 @@ const SignUp = () => {
       .then(response => {
         console.log(response.data);
         setIsLoading(false);
-        alert(response.data)
         navigate("/adminsignin", { replace: true });
       })
       .catch(err => {

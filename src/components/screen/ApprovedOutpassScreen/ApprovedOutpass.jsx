@@ -5,8 +5,10 @@ import { styled } from '@mui/material/styles';
 import axios from 'axios';
 import moment from 'moment';
 import { Button } from '@mui/material';
-import { RefreshOutlined, TaskAltOutlined } from '@mui/icons-material';
-import styles from './Home.module.css';
+import { RefreshOutlined, TaskAltOutlined, ArrowBackOutlined } from '@mui/icons-material';
+import styles from './ApprovedOutpass.module.css';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { useNavigate } from 'react-router-dom';
 
 const columns = [
   {
@@ -146,14 +148,19 @@ function CustomNoRowsOverlay() {
   );
 }
 
-export default function DataGridDemo() {
+export default function ApprovedOutpass() {
+
+  let navigate = useNavigate()
 
   const [pageSize, setPageSize] = useState(10);
   const [selectionModel, setSelectionModel] = useState([]);
   const [apiData, setApiData] = useState([]);
 
-  const getPendingOutpasses = () => {
-    axios.get('http://localhost:5000/pendingoutpasses', {
+  const [refreshLoading, setRefreshLoading] = useState(false)
+
+  const getApprovedOutpasses = () => {
+    setRefreshLoading(true)
+    axios.get('http://localhost:5000/approvedoutpasses', {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('jwt_token')
       }
@@ -161,14 +168,16 @@ export default function DataGridDemo() {
       .then(response => {
         console.log('Pending outpasses received: ', response.data.outpass_record)
         setApiData(response.data.outpass_record)
+        setRefreshLoading(false)
       })
       .catch(err => {
+        setRefreshLoading(false)
         console.log('Error getting pending outpasses: ', err)
       })
   }
 
   useEffect(() => {
-    getPendingOutpasses()
+    getApprovedOutpasses()
   }, [])
 
   const rowData = apiData.map(data => ({
@@ -197,7 +206,6 @@ export default function DataGridDemo() {
           onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
           rowsPerPageOptions={[10, 20, 30]}
           pagination
-          checkboxSelection
           disableSelectionOnClick
           components={{
             Toolbar: GridToolbar,
@@ -222,11 +230,17 @@ export default function DataGridDemo() {
         />
       </Box>
       <div className={styles.btncontainer}>
-        <Button variant="contained" endIcon={<RefreshOutlined />} onClick={() => getPendingOutpasses()}>
-          Refresh Data
-        </Button>
-        <Button variant="contained" endIcon={<TaskAltOutlined />}>
-          Approve
+        <LoadingButton
+          onClick={() => getApprovedOutpasses()}
+          endIcon={<RefreshOutlined />}
+          loading={refreshLoading}
+          loadingPosition="end"
+          variant="contained"
+        >
+          Refresh
+        </LoadingButton>
+        <Button variant="contained" endIcon={<ArrowBackOutlined />} onClick={() => navigate('/', { replace: true })}>
+          Dashboard
         </Button>
       </div>
     </div>

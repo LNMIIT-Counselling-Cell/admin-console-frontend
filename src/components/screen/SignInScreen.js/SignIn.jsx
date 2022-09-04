@@ -39,7 +39,6 @@ const SignUp = () => {
       .then(response => {
         console.log(response.data);
         setIsLoading(false);
-        alert(response.data)
         localStorage.setItem("jwt_token", response.data.token)
         localStorage.setItem("admin_details", JSON.stringify(response.data.admin))
         dispatch({ type: "ADMIN", payload: response.data.admin })
