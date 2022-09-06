@@ -8,10 +8,43 @@
 
 .form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 50%;
+  margin-bottom: 2rem;
+  /* background-color: red; */
+}
+
+.btnContainer {
+  width: 30%;
+  display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 3rem;
+}
+
+.left {
+  width: 45%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 45%;
+  height: 100%;
+}
+
+.validBox {
+  display: flex;
+  justify-content: left;
+  align-items: center;
   width: 50%;
-  height: 50%;
-  /* background-color: red; */
+  color: red;
+  font-size: 1rem;
 }
