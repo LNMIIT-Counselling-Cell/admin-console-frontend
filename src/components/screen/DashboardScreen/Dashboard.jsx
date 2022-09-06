@@ -35,7 +35,7 @@ export const Dashboard = () => {
         <Button variant="contained" endIcon={<ArrowForwardOutlined />} onClick={() => navigate('/uploadpost')}>
           Upload Post
         </Button>
-        <Button variant="contained" endIcon={<ArrowForwardOutlined />} onClick={() => navigate('/uploadpost')}>
+        <Button variant="contained" endIcon={<ArrowForwardOutlined />} onClick={() => navigate('/manageposts')}>
           Manage Posts
         </Button>
         <Button variant="contained" endIcon={<LogoutOutlined />} onClick={() => logout()}>

@@ -73,7 +73,7 @@ const columns = [
   {
     field: 'status',
     headerName: 'Status',
-    width: 110,
+    width: 90,
   },
 ];
 

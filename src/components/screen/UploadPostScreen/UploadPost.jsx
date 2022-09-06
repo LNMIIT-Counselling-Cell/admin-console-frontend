@@ -1,10 +1,9 @@
 import { ArrowBackOutlined, TaskAltOutlined } from '@mui/icons-material';
-import { TextField, MenuItem, Button, Alert, AlertTitle, Collapse, IconButton, Snackbar } from '@mui/material'
+import { TextField, MenuItem, Button, Alert, Snackbar } from '@mui/material'
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styles from './UploadPost.module.css'
-import CloseIcon from '@mui/icons-material/Close';
 
 const orgs = [
   {
@@ -227,14 +226,14 @@ export const UploadPost = () => {
         <Button variant="contained" endIcon={<TaskAltOutlined />} onClick={() => {
           if (isFormValid()) {
             uploadPostAPI()
-            setTimeout(() => {
-              setSuccess(false);
-              setFailure(false);
-            }, 10000)
           }
           else {
             setIsValid(true)
           }
+          setTimeout(() => {
+            setSuccess(false);
+            setFailure(false);
+          }, 10000)
         }}>
           Submit Post
         </Button>

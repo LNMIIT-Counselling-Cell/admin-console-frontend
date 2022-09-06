@@ -5,8 +5,8 @@ import { styled } from '@mui/material/styles';
 import axios from 'axios';
 import moment from 'moment';
 import { Alert, Button, Snackbar } from '@mui/material';
-import { RefreshOutlined, TaskAltOutlined, ArrowBackOutlined } from '@mui/icons-material';
-import styles from './PendingOutpass.module.css';
+import { RefreshOutlined, ArrowBackOutlined, DeleteOutline } from '@mui/icons-material';
+import styles from './ManagePosts.module.css';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,63 +17,37 @@ const columns = [
     width: 90
   },
   {
-    field: 'fullname',
-    headerName: 'Full name',
+    field: 'title',
+    headerName: 'Title',
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     width: 160,
   },
   {
-    field: 'rollno',
-    headerName: 'Roll No.',
+    field: 'desc',
+    headerName: 'Description',
+    width: 210,
+  },
+  {
+    field: 'org',
+    headerName: 'Organization',
     width: 110,
   },
   {
-    field: 'hostel',
-    headerName: 'Hostel',
-    width: 110,
+    field: 'orgiconurl',
+    headerName: 'Organization Icon URL',
+    width: 210,
   },
   {
-    field: 'room',
-    headerName: 'Room No.',
-    width: 110,
+    field: 'imageurl',
+    headerName: 'Post URL',
+    width: 210,
   },
   {
-    field: 'purpose',
-    headerName: 'Purpose',
-    width: 110,
-  },
-  {
-    field: 'transport',
-    headerName: 'Transport',
-    width: 110,
-  },
-  {
-    field: 'date',
-    headerName: 'Date',
-    width: 110,
-  },
-  {
-    field: 'from',
-    headerName: 'From Time',
+    field: 'createdat',
+    headerName: 'Created At',
     sortable: true,
-    width: 110,
-  },
-  {
-    field: 'to',
-    headerName: 'To Time',
-    sortable: true,
-    width: 110,
-  },
-  {
-    field: 'token',
-    headerName: 'Token',
-    width: 150,
-  },
-  {
-    field: 'status',
-    headerName: 'Status',
-    width: 90,
+    width: 160,
   },
 ];
 
@@ -143,12 +117,12 @@ function CustomNoRowsOverlay() {
           </g>
         </g>
       </svg>
-      <Box sx={{ mt: 1 }}>No Pending Outpasses</Box>
+      <Box sx={{ mt: 1 }}>No Posts</Box>
     </StyledGridOverlay>
   );
 }
 
-export default function PendingOutpass() {
+export default function ManagePosts() {
 
   let navigate = useNavigate()
 
@@ -156,7 +130,7 @@ export default function PendingOutpass() {
   const [selectionModel, setSelectionModel] = useState([]);
   const [apiData, setApiData] = useState([]);
 
-  const [refreshLoading, setRefreshLoading] = useState(false)
+  const [refreshLoading, setRefreshLoading] = useState(false);
 
   const [open, setOpen] = useState(true);
   const [success, setSuccess] = useState(false);
@@ -170,33 +144,33 @@ export default function PendingOutpass() {
     setOpen(false);
   };
 
-  const getPendingOutpasses = () => {
+  const getAllPosts = () => {
     setRefreshLoading(true)
-    axios.get('http://localhost:5000/pendingoutpasses', {
+    axios.get('http://localhost:5000/allposts', {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('jwt_token')
       }
     })
       .then(response => {
-        console.log('Pending outpasses received: ', response.data.outpass_record)
-        setApiData(response.data.outpass_record)
+        console.log('all posts received: ', response.data.posts)
+        setApiData(response.data.posts)
         setRefreshLoading(false)
       })
       .catch(err => {
         setRefreshLoading(false)
-        console.log('Error getting pending outpasses: ', err)
+        console.log('Error getting all posts: ', err)
       })
   }
 
-  const ApproveOutpass = (outpassId) => {
+  const DeletePost = (postId) => {
     setRefreshLoading(true)
-    axios.post(`http://localhost:5000/approveoutpass/${outpassId}`, null, {
+    axios.delete(`http://localhost:5000/deletepost/${postId}`, {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('jwt_token')
       }
     })
       .then(response => {
-        console.log('approve outpasses received: ', response.data.result)
+        console.log('delete post received: ', response.data.post)
         setRefreshLoading(false)
         setSuccess(true);
         setFailure(false);
@@ -206,35 +180,30 @@ export default function PendingOutpass() {
         setSuccess(false);
         setFailure(true);
         setErrmsg(err);
-        console.log('Error getting approve outpasses: ', err)
+        console.log('Error deleting post : ', err)
       })
   }
 
-  const approvefn = () => {
+  const deletefn = () => {
     selectionModel.forEach(id => {
       setTimeout(() => {
-        ApproveOutpass(id)
+        DeletePost(id)
       }, 500)
     });
   }
 
   useEffect(() => {
-    getPendingOutpasses()
+    getAllPosts()
   }, [])
 
   const rowData = apiData.map(data => ({
     id: data._id,
-    fullname: data.user.name,
-    rollno: data.user.email.substring(0, 8),
-    hostel: data.hostel,
-    room: data.roomno,
-    purpose: data.purpose,
-    transport: data.transport,
-    date: data.from.replace(/T.*/, '').split('-').reverse().join('-'),
-    from: moment(data.from).format("hh:mm A"),
-    to: moment(data.to).format("hh:mm A"),
-    token: data.token,
-    status: data.status
+    title: data.title,
+    desc: data.description,
+    org: data.organization,
+    orgiconurl: data.orgiconurl,
+    imageurl: data.imageurl,
+    createdat: moment(data.created_at).format("DD-MM-YYYY hh:mm A")
   }))
 
   return (
@@ -270,11 +239,12 @@ export default function PendingOutpass() {
               quickFilterProps: { debounceMs: 500 },
             }
           }}
+          onCellClick={(res) => console.log(res.formattedValue)}
         />
       </Box>
       <div className={styles.btncontainer}>
         <LoadingButton
-          onClick={() => getPendingOutpasses()}
+          onClick={() => getAllPosts()}
           endIcon={<RefreshOutlined />}
           loading={refreshLoading}
           loadingPosition="end"
@@ -282,27 +252,27 @@ export default function PendingOutpass() {
         >
           Refresh
         </LoadingButton>
-        <Button variant="contained" endIcon={<TaskAltOutlined />} onClick={() => {
-          approvefn()
-          getPendingOutpasses()
+        <Button variant="contained" endIcon={<DeleteOutline />} onClick={() => {
+          deletefn()
+          getAllPosts()
           setTimeout(() => {
             setSuccess(false);
             setFailure(false);
           }, 10000)
         }}>
-          Approve
+          Delete
         </Button>
         <Button variant="contained" endIcon={<ArrowBackOutlined />} onClick={() => navigate('/', { replace: true })}>
           Dashboard
         </Button>
         {success && <Snackbar open={open} autoHideDuration={10000} onClose={handleClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} key={'bottom' + 'center'}>
           <Alert onClose={handleClose} variant="filled" severity="success" sx={{ width: '100%' }}>
-            Outpass(s) have been successfully approved, kindly refresh data to check.
+            Post(s) have been successfully deleted, kindly refresh data to check.
           </Alert>
         </Snackbar>}
         {failure && <Snackbar open={open} autoHideDuration={10000} onClose={handleClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} key={'bottom' + 'center'}>
           <Alert onClose={handleClose} variant="filled" severity="error" sx={{ width: '100%' }}>
-            Error approving outpass(s), {errmsg}.
+            Error deleting post(s), {errmsg}.
           </Alert>
         </Snackbar>}
       </div>

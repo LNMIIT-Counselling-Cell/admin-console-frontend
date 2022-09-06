@@ -2,6 +2,7 @@ import React, { useEffect, createContext, useReducer, useContext } from 'react';
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import ApprovedOutpass from './components/screen/ApprovedOutpassScreen/ApprovedOutpass';
 import { Dashboard } from './components/screen/DashboardScreen/Dashboard';
+import ManagePosts from './components/screen/ManagePostsScreen/ManagePosts';
 import PendingOutpass from './components/screen/PendingOutpassScreen/PendingOutpass';
 import SignIn from './components/screen/SignInScreen.js/SignIn';
 import SignUp from './components/screen/SignUpScreen/SignUp';
@@ -34,6 +35,7 @@ const Routing = () => {
         <Route path='pendingoutpasses' element={<PendingOutpass />} />
         <Route path='approvedoutpasses' element={<ApprovedOutpass />} />
         <Route path='uploadpost' element={<UploadPost />} />
+        <Route path='manageposts' element={<ManagePosts />} />
       </Route>
       <Route path='adminsignin' element={<SignIn />} />
       <Route path='adminsignup' element={<SignUp />} />
