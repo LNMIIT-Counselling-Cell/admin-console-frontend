@@ -14,16 +14,14 @@ export const AdminContext = createContext()
 const Routing = () => {
 
   let navigate = useNavigate()
-
+  
   const { state, dispatch } = useContext(AdminContext)
-
+  
+  const admin = JSON.parse(localStorage.getItem("admin_details"))
   useEffect(() => {
-    const admin = JSON.parse(localStorage.getItem("admin_details"))
     if (admin) {
       dispatch({ type: "ADMIN", payload: admin }) // handing the situ when the user closes the app but does not log out so reopening the app should be taken care of
-      // history.push('/')
     } else {
-      // history.push('/signin')
       navigate('/adminsignin', { replace: true })
     }
   }, [])
@@ -31,14 +29,14 @@ const Routing = () => {
   return (
     <Routes>
       <Route path='/' >
-        <Route index={true} element={<Dashboard />} />
-        <Route path='pendingoutpasses' element={<PendingOutpass />} />
-        <Route path='approvedoutpasses' element={<ApprovedOutpass />} />
-        <Route path='uploadpost' element={<UploadPost />} />
-        <Route path='manageposts' element={<ManagePosts />} />
+        {admin && <Route index={true} element={<Dashboard />} />}
+        {admin && <Route path='pendingoutpasses' element={<PendingOutpass />} />}
+        {admin && <Route path='approvedoutpasses' element={<ApprovedOutpass />} />}
+        {admin && <Route path='uploadpost' element={<UploadPost />} />}
+        {admin && <Route path='manageposts' element={<ManagePosts />} />}
       </Route>
-      <Route path='adminsignin' element={<SignIn />} />
-      <Route path='adminsignup' element={<SignUp />} />
+      <Route path='/adminsignin' index={true} element={<SignIn />} />
+      <Route path='/adminsignup' index={true} element={<SignUp />} />
     </Routes>
   )
 }

@@ -19,12 +19,22 @@
 }
 
 .right {
-  width: 40%;
+  width: 35%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 17%;
 }
 
 .title {
@@ -45,29 +55,16 @@
   display: flex;
   justify-content: left;
   align-items: center;
-  width: 85%;
+  width: 100%;
   color: red;
   font-size: 1rem;
-}
-
-.submitbtn {
-  width: 85%;
-  margin-top: 1rem;
-  margin-bottom: 0.25rem;
-  padding: 0.75rem;
-  border: 0.5px solid grey;
-  border-radius: 8px;
-  background-color: #1976d2;
-  color: #ffffff;
-  font-size: 1rem;
-  cursor: pointer;
 }
 
 .subContainer {
   display: flex;
   justify-content: right;
   align-items: center;
-  width: 85%;
+  width: 100%;
   text-decoration: underline;
   margin-bottom: 1.5rem;
   cursor: pointer;
