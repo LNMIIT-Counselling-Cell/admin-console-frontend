@@ -7,115 +7,115 @@ import styles from './UploadPost.module.css'
 
 const orgs = [
   {
-    value: 'ccell',
+    value: 'C-Cell',
     label: 'C-Cell',
   },
   {
-    value: 'presi',
+    value: 'Presidentail Council',
     label: 'Presidentail Council',
   },
   {
-    value: 'gymkhana',
+    value: `Student's Gymkhana`,
     label: `Student's Gymkhana`,
   },
   {
-    value: 'cult',
+    value: 'Cultural Council',
     label: 'Cultural Council',
   },
   {
-    value: 'scitech',
+    value: 'Science & Technology Council',
     label: 'Science & Technology Council',
   },
   {
-    value: 'sports',
+    value: 'Sports Council',
     label: 'Sports Council',
   },
   {
-    value: 'cosha',
+    value: 'COSHA Committee',
     label: 'COSHA Committee',
   },
   {
-    value: 'viva',
+    value: 'Vivacity',
     label: 'Vivacity',
   },
   {
-    value: 'aaveg',
+    value: 'Aaveg, The Nukkad Mandali',
     label: 'Aaveg, The Nukkad Mandali',
   },
   {
-    value: 'capriccio',
+    value: 'Capriccio, The Music Club',
     label: 'Capriccio, The Music Club',
   },
   {
-    value: 'eminence',
+    value: 'Eminence, The Fashion Club',
     label: 'Eminence, The Fashion Club',
   },
   {
-    value: 'imagination',
+    value: 'Imagination',
     label: 'Imagination',
   },
   {
-    value: 'insignia',
+    value: 'Insignia, The Dance Club',
     label: 'Insignia, The Dance Club',
   },
   {
-    value: 'litcom',
+    value: 'Literary Committee',
     label: 'Literary Committee',
   },
   {
-    value: 'media',
+    value: 'Media Cell',
     label: 'Media Cell',
   },
   {
-    value: 'rendition',
+    value: 'Rendition, The Dramatics Club',
     label: 'Rendition, The Dramatics Club',
   },
   {
-    value: 'sankalp',
+    value: 'Sankalp Club',
     label: 'Sankalp Club',
   },
   {
-    value: 'plinth',
+    value: 'Plinth',
     label: 'Plinth',
   },
   {
-    value: 'astro',
+    value: 'Astronomy Club',
     label: 'Astronomy Club',
   },
   {
-    value: 'cybros',
+    value: 'Cybros',
     label: 'Cybros',
   },
   {
-    value: 'debsoc',
+    value: 'Debsoc',
     label: 'Debsoc',
   },
   {
-    value: 'phoenix',
+    value: 'Phoenix',
     label: 'Phoenix',
   },
   {
-    value: 'ecell',
+    value: 'E-Cell',
     label: 'E-Cell',
   },
   {
-    value: 'quiz',
+    value: 'Quizzinga',
     label: 'Quizzinga',
   },
   {
-    value: 'cipher',
+    value: 'Cipher',
     label: 'Cipher',
   },
   {
-    value: 'gdsc',
+    value: 'GDSC',
     label: 'GDSC',
   },
   {
-    value: 'acm',
+    value: 'ACM',
     label: 'ACM',
   },
   {
-    value: 'asme',
+    value: 'ASME',
     label: 'ASME',
   },
 ];
