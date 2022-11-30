@@ -172,7 +172,7 @@ export default function PendingOutpass() {
 
   const getPendingOutpasses = () => {
     setRefreshLoading(true)
-    axios.get('http://localhost:5000/pendingoutpasses', {
+    axios.get(process.env.REACT_APP_PROD_URL + 'pendingoutpasses', {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('jwt_token')
       }
@@ -190,7 +190,7 @@ export default function PendingOutpass() {
 
   const ApproveOutpass = (outpassId) => {
     setRefreshLoading(true)
-    axios.post(`http://localhost:5000/approveoutpass/${outpassId}`, null, {
+    axios.post(process.env.REACT_APP_PROD_URL + `approveoutpass/${outpassId}`, null, {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('jwt_token')
       }

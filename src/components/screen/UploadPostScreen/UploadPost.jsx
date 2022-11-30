@@ -174,7 +174,7 @@ export const UploadPost = () => {
 
   const uploadPostAPI = () => {
     console.log(postData);
-    axios.post('http://localhost:5000/uploadPost', postData, {
+    axios.post(process.env.REACT_APP_PROD_URL + 'uploadPost', postData, {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('jwt_token')
       }

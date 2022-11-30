@@ -160,7 +160,7 @@ export default function ApprovedOutpass() {
 
   const getApprovedOutpasses = () => {
     setRefreshLoading(true)
-    axios.get('http://localhost:5000/approvedoutpasses', {
+    axios.get(process.env.REACT_APP_PROD_URL + 'approvedoutpasses', {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('jwt_token')
       }

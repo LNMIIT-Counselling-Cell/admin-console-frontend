@@ -51,7 +51,7 @@ const SignUp = () => {
 
   const loginAdmin = () => {
     setRefreshLoading(true);
-    axios.post('http://localhost:5000/adminsignin', adminData)
+    axios.post(process.env.REACT_APP_PROD_URL + 'adminsignin', adminData)
       .then(response => {
         console.log(response.data);
         setRefreshLoading(false);
